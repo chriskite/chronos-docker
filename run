@@ -62,11 +62,15 @@ then
   app_options=( ${app_options[@]} --default_job_owner ${CHRONOS_DEFAULT_JOB_OWNER} )
 fi
 
+if [ ! -z "$CHRONOS_DISABLE_AFTER_FAILURES" ]
+then
+  app_options=( ${app_options[@]} --disable_after_failures ${CHRONOS_DISABLE_AFTER_FAILURES} )
+fi
+
 if [ ! -z "$CHRONOS_HTTP_CREDENTIALS" ]
 then
   app_options=( ${app_options[@]} --http_credentials ${CHRONOS_HTTP_CREDENTIALS} )
 fi
-
 
 echo "app_options=${app_options[@]}"
 
