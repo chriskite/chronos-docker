@@ -32,6 +32,38 @@ fi
 
 app_options=( --hostname `hostname` --http_port 8081 --master zk://${zookeepers}/mesos --zk_hosts zk://${zookeepers}/mesos )
 
+if [ ! -z "$CHRONOS_HTTP_CREDENTIALS" ]
+then
+  app_options=( ${app_options[@]} --http_credentials ${CHRONOS_HTTP_CREDENTIALS} )
+fi
+
+if [ ! -z "$CHRONOS_MAIL_FROM" ]
+then
+  app_options=( ${app_options[@]} --mail_from ${CHRONOS_MAIL_FROM} )
+fi
+
+if [ ! -z "$CHRONOS_MAIL_PASSWORD" ]
+then
+  app_options=( ${app_options[@]} --mail_password ${CHRONOS_MAIL_PASSWORD} )
+fi
+
+if [ ! -z "$CHRONOS_MAIL_SERVER" ]
+then
+  app_options=( ${app_options[@]} --mail_server ${CHRONOS_MAIL_SERVER} )
+fi
+
+if [ ! -z "$CHRONOS_MAIL_USER" ]
+then
+  app_options=( ${app_options[@]} --mail_user ${CHRONOS_MAIL_USER} )
+fi
+
+if [ ! -z "$CHRONOS_DEFAULT_JOB_OWNER" ]
+then
+  app_options=( ${app_options[@]} --default_job_owner ${CHRONOS_DEFAULT_JOB_OWNER} )
+fi
+
+echo "app_options=${app_options[@]}"
+
 function start {
   echo "$(date): $(env)"
   echo "$(date) [ulimit] $(ulimit -n)"
