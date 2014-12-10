@@ -57,6 +57,11 @@ then
   app_options=( ${app_options[@]} --mail_user ${CHRONOS_MAIL_USER} )
 fi
 
+if [ ! -z "$CHRONOS_MAIL_SSL" ]
+then
+  app_options=( ${app_options[@]} --mail_ssl )
+fi
+
 if [ ! -z "$CHRONOS_DEFAULT_JOB_OWNER" ]
 then
   app_options=( ${app_options[@]} --default_job_owner ${CHRONOS_DEFAULT_JOB_OWNER} )
