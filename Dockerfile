@@ -24,11 +24,10 @@ RUN sudo apt-get -y install mesos=0.21.0-1.0.ubuntu1404
 ADD ./zookeepers.rb /usr/local/bin/zookeepers.rb
 
 # install chronos
-RUN curl -sSfL http://downloads.mesosphere.io/chronos/chronos-2.1.0_mesos-0.14.0-rc4.tgz --output chronos.tgz
-RUN tar -xzf chronos.tgz
+ADD chronos-2.3.0_mesos-0.20.1-SNAPSHOT.jar /chronos/
 ADD run /etc/service/chronos/run
 
 # Clean up when done.
-RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* chronos.tgz
+RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 EXPOSE 8081

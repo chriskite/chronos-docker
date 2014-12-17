@@ -5,7 +5,7 @@ export JAVA_LIBRARY_PATH="/usr/local/lib:/lib:/usr/lib"
 export LD_LIBRARY_PATH="${LD_LIBRARY_PATH:-/lib}"
 export LD_LIBRARY_PATH="$JAVA_LIBRARY_PATH:$LD_LIBRARY_PATH"
 
-app_jars=( /chronos/target/chronos*.jar )
+app_jars=( /chronos/chronos*.jar )
 main=com.airbnb.scheduler.Main
 
 heap=2048m
