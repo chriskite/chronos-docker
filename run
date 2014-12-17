@@ -30,7 +30,14 @@ else
   zookeepers=$(/usr/local/bin/zookeepers.rb $EXHIBITOR_HOST)
 fi
 
-app_options=( --hostname `hostname` --http_port 8081 --master zk://${zookeepers}/mesos --zk_hosts zk://${zookeepers}/mesos )
+app_options=( --http_port 8081 --master zk://${zookeepers}/mesos --zk_hosts zk://${zookeepers}/mesos )
+
+if [ ! -z "$CHRONOS_HOSTNAME" ]
+then
+  app_options=( ${app_options[@]} --hostname ${CHRONOS_HOSTNAME} )
+else
+  app_options=( ${app_options[@]} --hostname ${HOST} )
+fi
 
 if [ ! -z "$CHRONOS_MAIL_FROM" ]
 then
