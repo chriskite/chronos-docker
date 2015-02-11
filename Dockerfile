@@ -17,5 +17,3 @@ RUN rm /etc/mesos/zk
 RUN rm /etc/chronos/conf/http_port
 
 EXPOSE 8081
-
-ENTRYPOINT ["/usr/bin/chronos"]
