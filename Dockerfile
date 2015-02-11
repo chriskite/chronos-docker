@@ -22,4 +22,7 @@ RUN apt-get install -qqy --force-yes mesos=0.21.1-1.1.ubuntu1404 chronos=2.3.2-0
 # Clean up when done.
 RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
+RUN rm /etc/mesos/zk
+RUN rm /etc/chronos/conf/http_port
+
 EXPOSE 8081
