@@ -1,4 +1,4 @@
-FROM phusion/baseimage:0.9.15
+FROM phusion/baseimage:0.9.16
 
 # Set correct environment variables.
 ENV HOME /root
@@ -15,17 +15,9 @@ RUN sudo apt-key adv --keyserver keyserver.ubuntu.com --recv E56151BF
 
 # update apt
 RUN apt-get update && apt-get dist-upgrade -y
-RUN apt-get install -qqy --force-yes curl ruby openjdk-7-jdk
 
-# install mesos (for the libraries)
-RUN sudo apt-get -y install mesos=0.21.0-1.0.ubuntu1404
-
-# add zookeepers helper script
-ADD ./zookeepers.rb /usr/local/bin/zookeepers.rb
-
-# install chronos
-ADD chronos-2.3.0_mesos-0.20.1-SNAPSHOT.jar /chronos/
-ADD run /etc/service/chronos/run
+# install the things we need
+RUN apt-get install -qqy --force-yes mesos=0.21.1-1.1.ubuntu1404 chronos=2.3.2-0.1.20150207000917.ubuntu1404
 
 # Clean up when done.
 RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
